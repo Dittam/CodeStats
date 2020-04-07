@@ -3,6 +3,7 @@ import sys
 import unicodedata
 import re
 import matplotlib.pyplot as plt
+import matplotlib
 import pandas as pd
 import numpy as np
 import datetime
@@ -72,7 +73,7 @@ def generateCountsByType(df):
                                      "commentCount": [-1], "fileExtension": [
         "Comments"]})).sort_values(by=["lineCount"],
                                    ascending=False)
-
+    total = "Total: " + str(df["lineCount"].sum() + df["commentCount"].sum())
     #------graph customization------
     fig = plt.figure(facecolor='#07000d')
     fig.canvas.set_window_title('Line Counts')
@@ -103,6 +104,7 @@ def generateCountsByType(df):
     plt.getp(titleObj)  # print out the properties of title
     plt.getp(titleObj, 'text')  # print out the 'text' property for title
     plt.setp(titleObj, color='#ffffff')
+    ax1.text(-2.0125, -0.05, total, fontsize=15, color='white')
 
 
 def generateCountsOvertime(df):
@@ -151,7 +153,8 @@ def generatefileCounts(df):
     # filter df by fileExtensions and sum lineCounts
     temp = df.iloc[:, 1:3].groupby("fileExtension").count().reset_index()
     temp.columns = ["fileExtension", "fileCount"]
-    temp=temp.sort_values(by="fileCount", ascending=False)
+    temp = temp.sort_values(by="fileCount", ascending=False)
+    total = "Total: " + str(temp["fileCount"].sum())
     #------graph customization------
     fig3 = plt.figure(facecolor='#07000d')
     fig3.canvas.set_window_title('File Counts')
@@ -182,6 +185,7 @@ def generatefileCounts(df):
     plt.getp(titleObj)  # print out the properties of title
     plt.getp(titleObj, 'text')  # print out the 'text' property for title
     plt.setp(titleObj, color='#ffffff')
+    ax3.text(-1.75, -0.005, total, fontsize=15, color='white')
 
 
 if __name__ == '__main__':
