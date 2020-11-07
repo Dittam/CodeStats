@@ -244,7 +244,8 @@ if __name__ == '__main__':
 
   codeStats = CodeStats(roots, validExtensions, exclusions, commentSymbols)
 
-  fileStatsDF = codeStats.generateFileStats()  # generate dataframe of file info
+  # generate dataframe of file info
+  fileStatsDF = codeStats.generateFileStats()
 
   # visualize generated dataframe
   codeStats.visualizeCountsByExtensionType(fileStatsDF)
