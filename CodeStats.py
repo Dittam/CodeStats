@@ -31,7 +31,7 @@ class CodeStats(object):
       except NotADirectoryError:
         fileName, fileExtension = os.path.splitext(root)
         if fileExtension in self.validExtensions:
-          # print(fileName)
+          print(fileName)
           date = min(os.path.getctime(root), os.path.getmtime(root))
           output = [root, fileExtension, date]
           output.extend(self._getCountsPerFile(root, fileExtension))
@@ -154,7 +154,7 @@ class CodeStats(object):
     temp["totalLineCount"] = temp.sum(axis=1)
     pivot = temp.pivot_table(
         index='dateCreated', columns='fileExtension', values='totalLineCount')
-    print(pivot)
+
     #------graph customization------
     colors = ["#f5f0ce", "#31A354", "#ff0000", "#ffff66", "#0066ff", "#74C476",
               "#6600cc", '#f4b642', "#ff00ff", "#ff9999", "#660033", '#41f1f4',
@@ -239,7 +239,6 @@ if __name__ == '__main__':
 
   commentSymbols = ("#", "//", "/**", "*")
 
-  # roots = ["C:/Users/ditta/OneDrive/CSCB07/Assignment2/Assignment2/src"]
   roots = ["C:/Users/ditta/OneDrive", "C:/Users/ditta/Documents/Code",
            "C:/Users/ditta/Documents/Python Projects"]
 
